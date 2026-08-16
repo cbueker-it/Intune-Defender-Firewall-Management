@@ -2,6 +2,13 @@
 
 Microsoft Intune lab documenting centralized Microsoft Defender Firewall policy deployment, security-groups, and endpoint verification on a Windows 11 Pro virtual machine.
 
+**Objectives**
+
+- Establish a baseline of the Windows Defender Firewall configuration before applying centralized Intune management.
+- Create a dedicated device security group to provide a clear target for the Windows 11 endpoint.
+- Configure and deploy a Microsoft Defender Firewall policy through Microsoft Intune.
+- Verify that the policy successfully reached the endpoint and became the effective configuration through Intune, Windows Security, the firewall GUI, and PowerShell.
+
 **Baseline Firewall State**
 
 * Establishes the Windows Defender Firewall state before centralized Intune policy management.
@@ -64,3 +71,12 @@ Microsoft Intune lab documenting centralized Microsoft Defender Firewall policy 
 * Provides final command-line verification of the effective firewall policy on the endpoint.
 
 <img src="images1/07-powershell-activestore-validation.png" alt="PowerShell ActiveStore validation of Microsoft Defender Firewall policy" width="800"/>
+
+**Lessons Learned**
+
+- Learned that centralized endpoint management is not just about creating a policy. The full process includes defining the desired outcome, targeting the correct devices, deploying the policy, and verifying and validating the results.
+- Used security groups and policy targeting as a scalable way to organize business endpoint devices and control which systems receive a particular configuration.
+- Confirmed that a successful Intune deployment is important evidence, but followed the stronger practice of validating the configuration directly from the endpoint at the system level.
+- Compared the original Get-NetFirewallProfile output, which showed several values as NotConfigured, with the ActiveStore, which showed the effective configuration that had been centrally applied.
+- Reinforced the importance of checking the correct policy store and verifying that the Windows Firewall policy was properly configured, received, and active on the endpoint.
+- Demonstrated that using multiple verification methods provides stronger evidence that a security policy was successfully applied remotely instead of relying on only one management-status view.
