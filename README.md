@@ -4,62 +4,63 @@ Microsoft Intune lab documenting centralized Microsoft Defender Firewall policy 
 
 **Baseline Firewall State**
 
-- Confirms the Domain, Private, and Public firewall profiles were enabled before the Intune policy was applied.
-- Shows the default inbound and outbound actions as `NotConfigured`.
-- Establishes that blocked-packet logging was disabled with `LogBlocked: False` before centralized configuration.
+* Establishes the Windows Defender Firewall state before centralized Intune policy management.
+* Shows the Domain, Private, and Public firewall profiles were already enabled.
+* Shows `DefaultInboundAction` and `DefaultOutboundAction` as `NotConfigured`.
+* Shows `LogBlocked: False`, establishing that dropped-packet logging had not yet been configured through the Intune policy.
 
-<img src="images/01-firewall-baseline-before-intune.png" alt="Windows Defender Firewall baseline before Intune policy deployment" width="800"/>
+<img src="image1/01-firewall-baseline-before-intune.png" alt="Windows Defender Firewall baseline before Intune policy deployment" width="800"/>
 
-**Intune Defender Firewall Policy Configuration**
+**Intune Device Security Group**
 
-- Shows Microsoft Defender Firewall being configured through the Intune admin center.
-- Enables the Domain firewall profile and applies a default inbound action of `Block`.
-- Enables logging of dropped packets to improve visibility into blocked network traffic.
-- Demonstrates centralized firewall configuration rather than manual endpoint-by-endpoint changes.
+* Creates a Security group to target the Windows 11 lab endpoint with Intune policy.
+* Uses an assigned membership type so the intended endpoint can be explicitly included.
+* Confirms one device was selected as a member of the group.
+* Provides a reusable group-based targeting structure for centralized endpoint management.
 
-<img src="images/02-intune-firewall-settings.png" alt="Microsoft Intune Defender Firewall policy settings" width="800"/>
-
-**Security Group and Device Targeting**
-
-- Creates an assigned security group for the Windows 11 Intune lab endpoint.
-- Uses device-group membership to define which endpoint receives the firewall policy.
-- Demonstrates group-based targeting that can scale beyond configuration of a single device.
-
-<img src="images/03-intune-device-security-group.png" alt="Microsoft Intune Windows 11 device security group" width="800"/>
+<img src="image1/02-intune-device-security-group.png" alt="Microsoft Intune device security group for Windows 11 lab endpoint" width="800"/>
 
 **Intune Policy Deployment Success**
 
-- Confirms the Defender Firewall policy successfully checked in on one targeted endpoint.
-- Shows zero policy errors, conflicts, or remaining deployments in progress.
-- Confirms the Windows 11 lab security group is included in the policy assignment.
-- Provides centralized administrative evidence that the policy was delivered successfully.
+* Confirms the Windows 11 Pro Defender Firewall policy successfully reached the targeted endpoint.
+* Shows one successful deployment with zero errors, conflicts, or deployments still in progress.
+* Confirms the `Intune-Windows11-Lab-Devices` group is included in the policy assignment.
+* Provides Intune-side confirmation before validating the resulting configuration directly on Windows.
 
-<img src="images/04-intune-policy-deployment-success.png" alt="Microsoft Intune Defender Firewall policy deployment success" width="800"/>
+<img src="image1/06-intune-policy-deployment-success.png" alt="Microsoft Intune Defender Firewall policy deployment success" width="800"/>
 
-**Windows Security Administrative Control**
+**Intune Firewall Policy Settings**
 
-- Confirms Windows recognizes the firewall configuration as administrator-managed.
-- Shows that the firewall setting is controlled centrally rather than only through local user configuration.
-- Demonstrates the endpoint-side effect of applying Microsoft Intune management policy.
+* Reviews the Defender Firewall settings configured through the Microsoft Intune admin center.
+* Confirms the Domain Network Firewall is enabled.
+* Confirms dropped-packet logging is enabled for additional troubleshooting and security visibility.
+* Shows the centrally defined firewall configuration from the Intune administrative side.
 
-<img src="images/05-windows-security-admin-managed.png" alt="Windows Security showing Microsoft Defender Firewall managed by administrator" width="800"/>
+<img src="image1/04-intune-firewall-settings.png" alt="Microsoft Intune Defender Firewall policy settings" width="800"/>
+
+**Windows Security Administrator Management**
+
+* Moves from the Intune administration portal to the managed Windows 11 endpoint for local verification.
+* Windows Security reports that the Microsoft Defender Firewall setting is managed by an administrator.
+* Demonstrates that the endpoint recognizes the centrally applied organizational firewall policy.
+
+<img src="image1/05-windows-security-admin-managed.png" alt="Windows Security showing Microsoft Defender Firewall managed by administrator" width="800"/>
 
 **Windows Defender Firewall GUI Validation**
 
-- Verifies the effective Domain profile configuration through Windows Defender Firewall with Advanced Security.
-- Confirms inbound connections use the `Block (default)` behavior.
-- Confirms dropped-packet logging is enabled for the firewall profile.
-- Provides GUI-based endpoint validation independent of the Intune administration portal.
+* Uses Windows Defender Firewall with Advanced Security to inspect the effective configuration directly on the endpoint.
+* Confirms the Domain profile uses `Block (default)` for inbound connections.
+* Confirms dropped-packet logging is enabled.
+* Provides GUI-based validation that the centrally configured Intune policy became effective on Windows.
 
-<img src="images/06-windows-firewall-gui-validation.png" alt="Windows Defender Firewall with Advanced Security validation" width="800"/>
+<img src="image1/03-windows-firewall-gui-validation.png" alt="Windows Defender Firewall with Advanced Security policy validation" width="800"/>
 
 **PowerShell ActiveStore Validation**
 
-- Queries the Windows Firewall `ActiveStore` to verify the effective configuration applied to the endpoint.
-- Confirms Domain, Private, and Public firewall profiles are enabled.
-- Verifies default inbound traffic is blocked while default outbound traffic is allowed.
-- Confirms blocked-packet logging is enabled across all three firewall profiles.
-- Provides command-line validation that the centrally deployed Intune settings became the effective Windows firewall policy.
+* Queries the Windows Firewall `ActiveStore` to validate the effective system-level firewall configuration.
+* Confirms Domain, Private, and Public firewall profiles are enabled.
+* Verifies the effective inbound action is `Block` and the outbound action is `Allow` across all three profiles.
+* Confirms `LogBlocked: True`, demonstrating that dropped-packet logging became active.
+* Completes the before-and-after validation by comparing the effective policy with the original firewall baseline.
 
-<img src="images/07-powershell-activestore-validation.png" alt="PowerShell ActiveStore verification of Microsoft Defender Firewall policy" width="800"/>
-
+<img src="image1/07-powershell-activestore-validation.png" alt="PowerShell ActiveStore validation of Microsoft Defender Firewall policy" width="800"/>
