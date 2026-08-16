@@ -2,6 +2,12 @@
 
 Microsoft Intune lab documenting centralized Microsoft Defender Firewall policy deployment, security-groups, and endpoint verification on a Windows 11 Pro virtual machine.
 
+What happens when a business needs to configure and apply the same firewall security settings across 50, 100, or even more Windows endpoint devices? Configuring all of those devices individually would create a large amount of unnecessary administrative overhead and increase the chance of error or inconsistent settings being applied across the environment.
+
+Centralized endpoint management allows a business to define the desired security configuration once, target the appropriate business devices through security groups, deploy the policy at scale, and then monitor and validate that those endpoints successfully received the security administration remotely. In this lab, I demonstrated and documented that process using Microsoft Intune and Microsoft Defender Firewall on a Windows 11 Pro endpoint running as a virtual machine through KVM on my Debian desktop.
+
+I first created a security group for the endpoint, configured and deployed a centralized firewall policy, and confirmed successful delivery through Intune. I then validated the applied configuration in multiple ways using both GUI-based and CLI-based verification. This approach supports better standardization, reduces the risk of misconfiguration and configuration drift, improves administrative efficiency, and gives IT teams stronger visibility into whether the intended security settings are actually being applied across managed endpoint devices.
+
 **Objectives**
 
 - Establish a baseline of the Windows Defender Firewall configuration before applying centralized Intune management.
