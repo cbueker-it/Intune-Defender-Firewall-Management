@@ -86,3 +86,15 @@ I first created a security group for the endpoint, configured and deployed a cen
 - Compared the original Get-NetFirewallProfile output, which showed several values as NotConfigured, with the ActiveStore, which showed the effective configuration that had been centrally applied.
 - Reinforced the importance of checking the correct policy store and verifying that the Windows Firewall policy was properly configured, received, and active on the endpoint.
 - Demonstrated that using multiple verification methods provides stronger evidence that a security policy was successfully applied remotely instead of relying on only one management-status view.
+
+**Summary**
+
+In this lab, I demonstrated how centralized endpoint management using Microsoft Intune can take a security setting that would otherwise need to be applied manually and turn it into a repeatable and scalable process. Instead of configuring one Windows device at a time, I used Microsoft Intune to configure the firewall policy, connected Intune to my Windows 11 endpoint, created a security group, added the endpoint to that group, and deployed the configuration remotely.
+
+Consistency, efficiency, and visibility are important business values that come from using centralized management software such as Microsoft Intune. Centralized policy management for firewall settings, and for other IT-related configurations, reduces the chance of misconfiguration, helps reduce and mitigate configuration drift, and gives IT administrators a stronger and more secure way to manage settings across a business's endpoint devices.
+
+I also validated the results directly from the Windows 11 endpoint using Windows Security, Windows Defender Firewall settings, and PowerShell commands. The goal was not just to deploy the policy. It was to demonstrate and prove that the intended configuration was received, applied properly, and became the effective configuration on the endpoint.
+
+Navigation
+
+[`Back to GitHub Profile`](https://www.github.com/cbueker-it)
