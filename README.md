@@ -42,7 +42,7 @@ Microsoft Intune lab documenting centralized Microsoft Defender Firewall policy 
 
 * Shows the firewall configuration from the managed Windows 11 endpoint.
 * Windows Security reports that the Microsoft Defender Firewall setting is managed by an administrator.
-* Demonstrates that Windows recognizes centrally applied organizational management of the firewall configuration.
+* Demonstrates that Windows recognizes centrally applied organizational management of this firewall configuration.
 
 <img src="images1/05-windows-security-admin-managed.png" alt="Windows Security showing Microsoft Defender Firewall managed by administrator" width="800"/>
 
